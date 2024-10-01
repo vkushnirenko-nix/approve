@@ -20,7 +20,7 @@ jobs:
    #       WORD: ${{ vars.WORD }}
 
 
-  deploy:
+  deploy_dev:
     runs-on: ubuntu-latest
     environment: dev  # Specify the environment here
     steps:
@@ -31,6 +31,15 @@ jobs:
         run: |
           echo "Building the application..."
 
+      - name: Deploy
+        run: |
+          echo "Deploying the application to ${{ vars.WORD }}"
+  deploy_stage:
+    runs-on: ubuntu-latest
+    environment: stage
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Deploy
         run: |
           echo "Deploying the application to ${{ vars.WORD }}"
