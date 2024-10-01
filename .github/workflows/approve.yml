@@ -16,7 +16,8 @@ jobs:
 
       - name: Build
         run: |
-          echo "Building the application..."
+          echo "Building the application..." > echo.txt
+          cat echo.txt
   
   deploy-dev:
     runs-on: ubuntu-latest
@@ -24,7 +25,9 @@ jobs:
     if: startsWith(github.ref, 'refs/heads/develop')  # Only run if the branch is 'main'
     steps:
       - name: Deploy
-        run: echo "Deploying to dev"
+        run: |
+          echo "Deploying to dev"
+          cat echo.txt
  
   deploy-stage:
     runs-on: ubuntu-latest
@@ -32,4 +35,7 @@ jobs:
     if: startsWith(github.ref, 'refs/heads/main')  # Only run if the branch is 'main'
     steps:
       - name: Deploy
-        run: echo "Deploying to stage"
+        run: |
+          echo "Deploying to stage"
+          cat echo.txt
+
