@@ -18,14 +18,23 @@ jobs:
 
       - name: Build
         run: |
-          echo "Building the application..." > echo.txt
+          echo "Building the application - artifact" > echo.txt
           cat echo.txt
-  
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: echo.txt
+          path: echo.txt
+
   deploy-dev:
     runs-on: ubuntu-latest
     needs: build
     if: startsWith(github.ref, 'refs/heads/develop')  # Only run if the branch is 'main'
     steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: echo.txt
       - name: Deploy
         run: |
           echo "Deploying to dev"
@@ -36,6 +45,14 @@ jobs:
     needs: build
     if: startsWith(github.ref, 'refs/heads/main')  # Only run if the branch is 'main'
     steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: echo.txt
+
+      - name: Use Artifacts
+        run: |
+          cat output.txt
       - name: Deploy
         run: |
           echo "Deploying to stage"
@@ -50,3 +67,4 @@ jobs:
         run: |
           echo "Deploying to prod"
           cat echo.txt
+
