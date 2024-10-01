@@ -16,26 +16,10 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run a one-line script
-        run: echo build!
-      - name: Run a one-line script
-        run: echo build!
-      - env:
-          WORD: ${{ vars.WORD }}
-        run: |
-          echo $WORD
+   #   - env:
+   #       WORD: ${{ vars.WORD }}
 
-name: Deploy to dev
 
-on:
-  push:
-    branches:
-      - main
-
-jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: dev  # Specify the environment here
