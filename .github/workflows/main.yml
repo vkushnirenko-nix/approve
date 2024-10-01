@@ -12,3 +12,4 @@ jobs:
     with:
       branch: 'develop'
       run_tests: 'true'
+      type: string
