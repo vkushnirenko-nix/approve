@@ -1,0 +1,14 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  call-template:
+    uses: ./.github/workflows/test-template.yml  # Call the template workflow
+    with:
+      branch: 'develop'
+      run_tests: 'true'
