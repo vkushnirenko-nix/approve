@@ -10,6 +10,7 @@ on:
       run_tests:
         description: 'Run tests flag'
         required: true
+        type: string
         default: 'true'
 
 jobs:
