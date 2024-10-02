@@ -9,6 +9,18 @@ on:
       - 'v*.*.*'
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: create env file
+        run: |
+          echo $ENVDEV > .env.dev
+          cat .env.dev
+
+
+    
   build:
     runs-on: ubuntu-latest
     environment: dev  # Specify the environment here
