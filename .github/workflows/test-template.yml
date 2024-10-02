@@ -3,7 +3,7 @@ name: CI Template
 on:
   workflow_call:  # This makes the workflow reusable
     inputs:
-      ENV:
+      ENVFILE:
         type: string
         required: true
       branch:
