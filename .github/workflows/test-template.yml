@@ -23,10 +23,8 @@ jobs:
     steps:
       - name: Set variables
         id: setvars
-        run: |
-          if [[ "${{github.base_ref}}" == "develop" ]]; then
-            echo "::set-output name=env_file::$ENVDEV"
-          fi
+        if: github.ref == 'refs/heads/develop'
+        run: echo "::set-output name=env_file::$ENVDEV"
 
       - name: Run tests
         if: ${{ inputs.run_tests == 'true' }}
