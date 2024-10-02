@@ -3,9 +3,6 @@ name: CI Template
 on:
   workflow_call:  # This makes the workflow reusable
     inputs:
-      ENVFILE:
-        type: string
-        required: true
       branch:
         type: string
         description: 'Branch to run the workflow on'
