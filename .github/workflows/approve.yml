@@ -24,7 +24,7 @@ jobs:
       - name: Build
         run: |
           echo "Building the application - artifact" > echo.txt
-          cat echo.txt
+          cat env.dev
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -40,6 +40,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: env.dev
+          path: env.dev
       - name: Deploy
         run: |
           echo "Deploying to dev"
