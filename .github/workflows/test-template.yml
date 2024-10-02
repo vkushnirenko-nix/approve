@@ -28,7 +28,9 @@ jobs:
 
       - name: Install dependencies
         if: ${{ inputs.branch == 'develop' }}
-        run: echo $DEVENV
+        run: |
+          echo $DEVENV
+          echo $GITHUB_REF_NAME
 
       - name: Run tests
         if: ${{ inputs.run_tests == 'true' }}
