@@ -27,7 +27,8 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-        run: echo Hello
+        if: ${{ inputs.branch == 'develop' }}
+        run: echo $DEVENV
 
       - name: Run tests
         if: ${{ inputs.run_tests == 'true' }}
