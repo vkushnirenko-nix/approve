@@ -17,14 +17,15 @@ on:
 jobs:
   init:
     runs-on: ubuntu-latest
-    outputs:
-      env_file: ${{ steps.setvars.outputs.env_file }}
     
     steps:
-      - name: Set variables
-        id: setvars
+      - name: Save state
         if: github.ref == 'refs/heads/develop'
-        run: echo "::set-output name=env_file::$ENVDEV"
+        run: echo "env_file=ENVDEV" >> $GITHUB_STATE
+
+      - name: Set output
+        run: echo "env_file=ENVDEV" >> $GITHUB_OUTPUT
+
 
       - name: Run tests
         if: ${{ inputs.run_tests == 'true' }}
@@ -35,5 +36,5 @@ jobs:
     needs: init
     steps:
       - name: Print
-        run: echo "env_file=${{needs.init.outputs.env_file}}"
+        run: echo $GITHUB_OUTPUT $GITHUB_STATE
        
