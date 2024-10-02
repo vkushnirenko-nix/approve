@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v2
       - name: create env file
         run: |
+          echo $ENVDEV 
           echo $ENVDEV > env.dev
           cat env.dev
           ls
@@ -53,13 +54,10 @@ jobs:
         with:
           name: env.dev
 
-      - name: Use Artifacts
-        run: |
-          cat output.txt
       - name: Deploy
         run: |
           echo "Deploying to stage"
-          cat echo.txt
+          cat env.dev
   
   deploy-prod:
     runs-on: ubuntu-latest
