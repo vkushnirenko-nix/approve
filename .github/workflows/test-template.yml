@@ -7,7 +7,7 @@ on:
         type: string
         description: 'Branch to run the workflow on'
         required: true
-        default: 'main'
+        default: 'develop'
       run_tests:
         description: 'Run tests flag'
         required: true
@@ -24,7 +24,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
 
       - name: Install dependencies
         run: echo Hello

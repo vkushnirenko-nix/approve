@@ -9,6 +9,8 @@ on:
 jobs:
   call-template:
     uses: ./.github/workflows/test-template.yml  # Call the template workflow
+    if: startsWith(github.ref, 'refs/heads/develop')
     with:
       branch: 'develop'
       run_tests: 'true'
+      env: 'ENVDEV'
