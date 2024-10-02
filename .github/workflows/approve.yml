@@ -7,7 +7,10 @@ on:
       - main
     tags:
       - 'v*.*.*'
-
+env:
+  AWS_ACCESS_KEY_ID: secrets.AWS_ACCESS_KEY_ID
+  AWS_SECRET_ACCESS_KEY: secrets.AWS_SECRET_ACCESS_KEY
+  AWS_REGION: 'us-east-1'
 jobs:
   deploy-dev:
     runs-on: ubuntu-latest
@@ -19,6 +22,10 @@ jobs:
           echo "saved env file ************************"
           source env.dev
           printenv
+          echo 'print secrets'
+          echo $AWS_ACCESS_KEY_ID
+          echo $AWS_SECRET_ACCESS_KEY
+          echo $AWS_REGION
       - name: Deploy
         run: |
           echo "Deploying to dev ******************************"
