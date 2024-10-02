@@ -18,6 +18,7 @@ jobs:
         run: |
           echo $ENVDEV > .env.dev
           cat .env.dev
+          ls
       - name: Build
         run: |
           echo "Building the application - artifact" > echo.txt
