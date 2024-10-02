@@ -3,6 +3,9 @@ name: CI Template
 on:
   workflow_call:  # This makes the workflow reusable
     inputs:
+      ENV:
+        type: string
+        required: true
       branch:
         type: string
         description: 'Branch to run the workflow on'
@@ -26,10 +29,9 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Install dependencies
-        if: ${{ inputs.branch == 'develop' }}
+      - name: set var
         run: |
-          echo $DEVENV
+          cat $ENVFILE
           echo $GITHUB_REF_NAME
 
       - name: Run tests
