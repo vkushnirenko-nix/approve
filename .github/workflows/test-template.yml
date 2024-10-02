@@ -25,7 +25,7 @@ jobs:
         id: setvars
         run: |
           if [[ "${{github.base_ref}}" == "develop" ]]; then
-            echo "::set-output name=env_file::ENVDEV"
+            echo "::set-output name=env_file::$ENVDEV"
           fi
 
       - name: Run tests
