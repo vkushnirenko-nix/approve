@@ -31,7 +31,8 @@ jobs:
 
       - name: set var
         run: |
-          cat $ENVFILE
+          cat $ENVFILE || echo wrong cat
+          echo $ENVFILE || echo wrong echo
           echo $GITHUB_REF_NAME
 
       - name: Run tests

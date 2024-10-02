@@ -9,8 +9,7 @@ on:
 jobs:
   call-template:
     uses: ./.github/workflows/test-template.yml  # Call the template workflow
-    env:
-      ENVFILE: DEVENV
     with:
       branch: $GITHUB_REF_NAME
       run_tests: 'false'
+      ENVFILE: ${{ github.ref == 'refs/heads/develop' && 'ENVDEV' || 'ENVSTAGE' }}
