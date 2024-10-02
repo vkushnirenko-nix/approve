@@ -36,7 +36,5 @@ jobs:
     needs: init
     steps:
       - name: Print
-        run: |
-        echo $GITHUB_REF_NAME
-        echo $GITHUB_OUTPUT $GITHUB_STATE
+        run: echo $GITHUB_REF_NAME
        
