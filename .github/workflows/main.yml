@@ -12,4 +12,3 @@ jobs:
     with:
       branch: $GITHUB_REF_NAME
       run_tests: 'false'
-      ENVFILE: ${{ github.ref == 'refs/heads/develop' && 'ENVDEV' || 'ENVSTAGE' }}

@@ -18,23 +18,27 @@ on:
         default: 'true'
 
 jobs:
-  test:
+  init:
     runs-on: ubuntu-latest
+    outputs:
+      env_file: ${{ steps.setvars.outputs.env_file }}
+    
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-
-      - name: set var
+      - name: Set variables
+        id: setvars
         run: |
-          cat $ENVFILE || echo wrong cat
-          echo $ENVFILE || echo wrong echo
-          echo $GITHUB_REF_NAME
+          if [[ "${{github.base_ref}}" == "develop" ]]; then
+            echo "::set-output name=env_file::ENVDEV"
+          fi
 
       - name: Run tests
         if: ${{ inputs.run_tests == 'true' }}
         run: echo Tests
+  
+  print:
+    runs-on: ubuntu-latest
+    needs: init
+    steps:
+      - name: Print
+        run: echo "env_file=${{needs.init.outputs.env_file}}"
+       
