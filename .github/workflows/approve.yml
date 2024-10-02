@@ -20,6 +20,7 @@ jobs:
           echo ${{ vars.ENVDEV }} > env.dev
           cat env.dev
           ls
+          pwd
       - name: Build
         run: |
           echo "Building the application - artifact" > echo.txt
@@ -42,6 +43,8 @@ jobs:
       - name: Deploy
         run: |
           echo "Deploying to dev"
+          ls
+          pwd
           cat env.dev
  
   deploy-stage:
